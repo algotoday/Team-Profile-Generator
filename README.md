@@ -17,7 +17,7 @@
 
 
 ## Walkthrough/Webpage
-link here
+link here or gif
 
 
 
