@@ -1,11 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const { generateMember, generateHtml }  = require('./src/generateHtmlPage')
-
-function promtWelcome() {
-    console.log("Welcome to the Team Profile Generator! We'll ask you a few questions about your team members then create an HTML file displaying your team members!")
-    promtMemberinfo()
-};
+const { originateProfile, createContainers } = require('./utils/originateProfile');
 
 function promtMemberinfo() {
     inquirer
@@ -53,33 +48,33 @@ function promtMemberinfo() {
         },
         {
             type: 'list',
-            name: 'member',
-            message: 'What role does this member play?',
-            choices: ['Manager', 'Engineer', 'Intern']
+            name: 'employee',
+            message: 'What role does this employee play?',
+            choices: ['Engineer', 'Manager', 'Intern']
         }
     ])
-    .then(answers => {
-        switch(answers.member) {
+    .then(data => {
+        switch(data.employee) {
             case 'Intern':
-                promptIntern(answers);
+                promptIntern(data);
                 break;
             case 'Engineer': 
-                promptEngineer(answers);
+                promptEngineer(data);
                 break;
             case 'Manager':
-                promptManager(answers);
+                promptManager(data);
                 break;
         };
     });
 };
 
-function promptManager(answers) {
+function promptManager(data) {
     inquirer
         .prompt([
             {
                 type: 'input',
                 name: 'officeNumber',
-                message: `What is ${answers.name}'s office number?`,
+                message: `What is ${data.name}'s office number?`,
                 validate: officeNumber => {
                     if (officeNumber) {
                         return true;
@@ -92,19 +87,19 @@ function promptManager(answers) {
             }
         ])
         .then(officeNumber => {
-            answers.officeNumber = officeNumber;
-            return generateMember(answers);
+            data.officeNumber = officeNumber;
+            return generateMember(data);
         })
         .then(promptAddNewMember)
 };
 
-function promptEngineer(answers) {
+function promptEngineer(data) {
     inquirer
         .prompt([
             {
                 type: 'input',
                 name: 'github',
-                message: `What is ${answers.name}'s Github username?`,
+                message: `What is ${data.name}'s Github username?`,
                 validate: github => {
                     if (github) {
                         return true;
@@ -117,19 +112,19 @@ function promptEngineer(answers) {
             }
         ])
         .then(github => {
-            answers.github = github;
-            return (generateMember(answers));
+            data.github = github;
+            return (generateMember(data));
         })
         .then(promptAddNewMember)
 };
 
-function promptIntern(answers) {
+function promptIntern(data) {
     inquirer
         .prompt([
             {
                 type: 'input',
                 name: 'school',
-                message: `What school does ${answers.name} attend?`,
+                message: `What school does ${data.name} attend?`,
                 validate: school => {
                     if (school) {
                         return true;
@@ -141,8 +136,8 @@ function promptIntern(answers) {
             }
         ])
         .then(school => {
-            answers.school = school;
-            return (generateMember(answers));
+            data.school = school;
+            return (generateMember(data));
         })
         .then(promptAddNewMember)
 };
@@ -172,4 +167,4 @@ function promptAddNewMember() {
         });
     });
 };
-promtWelcome();
+promtMemberinfo();
