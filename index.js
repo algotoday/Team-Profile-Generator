@@ -2,7 +2,7 @@ const originateProfile = require("./utils/originateProfile");
 const originateHtml = require("./utils/HTMLwebpage");
 const inquirer = require("inquirer");
 const fs = require("fs");
-let obj=``
+let obj = ``
 
 function addEmployee() {
   inquirer
@@ -87,7 +87,7 @@ function addIntern(data) {
     ])
     .then((school) => {
       data.school = school;
-      return originateProfile(data);
+      containers = originateProfile(data)
     })
     .then(addNewMember);
 };
@@ -111,7 +111,7 @@ function addManager(data) {
     ])
     .then((office) => {
       data.office = office;
-      return originateProfile(data);
+      containers = originateProfile(data)
     })
     .then(addNewMember);
 };
@@ -135,14 +135,12 @@ function addEngineer(data) {
     ])
     .then((github) => {
       data.github = github;
-      obj = originateProfile(data)
+      containers = originateProfile(data)
     })
-    .then((containers) => {
-        console.log(obj)
-    } );
+    .then(addNewMember)
 }
 
-function addNewMember() {
+function addNewMember () {
   inquirer
     .prompt([
       {
@@ -156,7 +154,7 @@ function addNewMember() {
       if (response.new) {
         return addEmployee();
       }
-      const indexHtml = originateHtml();
+      const indexHtml = originateHtml(containers);
 
       fs.writeFile("./dist/index.html", indexHtml, (err) => {
         if (err) {

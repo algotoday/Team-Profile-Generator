@@ -3,19 +3,20 @@ const Manager = require('../lib/Manager');
 const Intern = require('../lib/Intern');
 
 
+
 function originateProfile(profile) {
     switch(profile.employee) {
         case 'Manager':
            var employee = new Manager(profile.name, profile.id, profile.email, profile.office);
-            createContainers(employee);
+            return createContainers(employee);
             break;
         case 'Intern':
             var employee = new Intern(profile.name, profile.id,  profile.email, profile.school);
-            createContainers(employee);
+            return createContainers(employee);
             break;
         case 'Engineer':
             var employee = new Engineer(profile.name, profile.id, profile.email, profile.github);
-            createContainers(employee);
+            return createContainers(employee);
             break;
     }
 };
