@@ -65,7 +65,7 @@ function addEmployee() {
           break;
       }
     });
-}
+};
 
 function addIntern(data) {
   inquirer
@@ -89,7 +89,7 @@ function addIntern(data) {
       return originateProfile(data);
     })
     .then(addNewMember);
-}
+};
 
 function addManager(data) {
   inquirer
@@ -113,7 +113,7 @@ function addManager(data) {
       return originateProfile(data);
     })
     .then(addNewMember);
-}
+};
 
 function addEngineer(data) {
   inquirer
@@ -145,7 +145,7 @@ function addNewMember() {
       {
         type: "confirm",
         name: "new",
-        message: "Would you like to add another member?",
+        message: "Would you like to add another employee?",
         default: "false",
       },
     ])
@@ -163,5 +163,6 @@ function addNewMember() {
         console.log("File succesfully created!");
       });
     });
-}
+};
+
 addEmployee();

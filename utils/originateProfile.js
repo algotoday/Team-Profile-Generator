@@ -34,7 +34,7 @@ function createContainers(employee) {
                     <div class='card-body px-3'>
                         <p class='card-text'>ID: ${employee.id}</p>
                         <p class='card-text'>Email: <a href='mailto:${employee.email}'>${employee.email}</a></p>
-                        <p class='card-text'>${employee.getSpecial()}</p>
+                        <p class='card-text'>${employee.getRoleInfo()}</p>
                     </div>
                 </div>
             </div>
