@@ -3,19 +3,20 @@ const Manager = require('../lib/Manager');
 const Intern = require('../lib/Intern');
 
 
+
 function originateProfile(profile) {
     switch(profile.employee) {
         case 'Manager':
-           var employee = new Manager(profile.id, profile.name, profile.office, profile.email);
-            createContainers(employee);
+           var employee = new Manager(profile.name, profile.id, profile.email, profile.office);
+            return createContainers(employee);
             break;
         case 'Intern':
-            var employee = new Intern(profile.id, profile.name, profile.school, profile.email);
-            createContainers(employee);
+            var employee = new Intern(profile.name, profile.id,  profile.email, profile.school);
+            return createContainers(employee);
             break;
         case 'Engineer':
-            var employee = new Engineer(profile.id, profile.name, profile.github, profile.email);
-            createContainers(employee);
+            var employee = new Engineer(profile.name, profile.id, profile.email, profile.github);
+            return createContainers(employee);
             break;
     }
 };
@@ -23,7 +24,7 @@ function originateProfile(profile) {
 let containers = ``
 
 function createContainers(employee) {
-        return containers = `${containers}
+         containers = `${containers}
             <div class="col-3">
                 <div class="card mx-5 mb-3">
                     <div class="card-header bg-info text-center text-light h4">
@@ -39,6 +40,7 @@ function createContainers(employee) {
                 </div>
             </div>
         `
+        return containers
 };
 
 module.exports = originateProfile; 

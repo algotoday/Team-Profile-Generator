@@ -1,7 +1,3 @@
-
-
-
-
 function originateHtml(containers) {
     return ` <!doctype html>
     <html lang="en">
