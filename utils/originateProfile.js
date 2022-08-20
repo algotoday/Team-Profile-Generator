@@ -41,4 +41,4 @@ function createContainers(employee) {
         `
 };
 
-module.exports = { originateProfile, createContainers }; 
+module.exports = originateProfile; 
