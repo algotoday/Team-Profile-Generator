@@ -2,6 +2,7 @@ const originateProfile = require("./utils/originateProfile");
 const originateHtml = require("./utils/HTMLwebpage");
 const inquirer = require("inquirer");
 const fs = require("fs");
+let obj=``
 
 function addEmployee() {
   inquirer
@@ -134,9 +135,11 @@ function addEngineer(data) {
     ])
     .then((github) => {
       data.github = github;
-      return originateProfile(data);
+      obj = originateProfile(data)
     })
-    .then(addNewMember);
+    .then((containers) => {
+        console.log(obj)
+    } );
 }
 
 function addNewMember() {
