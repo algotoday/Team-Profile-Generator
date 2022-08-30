@@ -1,4 +1,4 @@
-const originateProfile = require("./utils/originateProfile");
+const generateHTML = require("./utils/originateProfile");
 const originateHtml = require("./utils/HTMLwebpage");
 const inquirer = require("inquirer");
 const fs = require("fs");
